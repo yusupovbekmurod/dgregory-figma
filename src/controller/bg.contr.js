@@ -1,6 +1,6 @@
-import header from "../model/product-features.model.js";
+import header from "../model/bg.modul.js";
 
-class productFContr {
+class headerContr {
     async get(req, res) {
         try {
             const id = req.params?.id;
@@ -12,7 +12,7 @@ class productFContr {
             return res.send({
                 status: 200,
                 data,
-                message: "product-features",
+                message: "bg-Image",
             });
         } catch (error) {
             return res.status(404).json({
@@ -24,13 +24,13 @@ class productFContr {
     }
     async post(req, res) {
         try {
-            let { title, product_ref_id } = req.body;
+            let { imageLink } = req.body;
 
             res.send({
                 status: 201,
                 data: await header.insert({
-                    title: title,
-                    product_ref_id: product_ref_id
+
+                    imageLink: imageLink
                 }),
                 message: "success",
             });
@@ -49,18 +49,19 @@ class productFContr {
             const id = req.params?.id;
             let data;
 
-            let { title, product_ref_id } = req.body;
+            let { title, imageLink } = req.body;
 
             const obj = {
                 $set: {
-                    title: title ? title : data.title,
-                    product_ref_id: product_ref_id ? product_ref_id : data.product_ref_id,
+
+                    imageLink: imageLink ? imageLink : data.imageLink,
                 },
             };
             return res.send({
                 status: 201,
                 data: await header.update({ _id: id }, obj),
             });
+
 
         } catch (error) {
             return res.status(404).json({
@@ -89,4 +90,4 @@ class productFContr {
     }
 }
 
-export default new productFContr();
+export default new headerContr();

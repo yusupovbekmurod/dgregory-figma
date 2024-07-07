@@ -1,6 +1,6 @@
-import header from "../model/product-features.model.js";
+import header from "../model/editorial.modal.js";
 
-class productFContr {
+class editorailContr {
     async get(req, res) {
         try {
             const id = req.params?.id;
@@ -12,7 +12,7 @@ class productFContr {
             return res.send({
                 status: 200,
                 data,
-                message: "product-features",
+                message: "editorial",
             });
         } catch (error) {
             return res.status(404).json({
@@ -24,13 +24,14 @@ class productFContr {
     }
     async post(req, res) {
         try {
-            let { title, product_ref_id } = req.body;
+            let { title, imageLink, description } = req.body;
 
             res.send({
                 status: 201,
                 data: await header.insert({
                     title: title,
-                    product_ref_id: product_ref_id
+                    imageLink: imageLink,
+                    description: description
                 }),
                 message: "success",
             });
@@ -49,18 +50,20 @@ class productFContr {
             const id = req.params?.id;
             let data;
 
-            let { title, product_ref_id } = req.body;
+            let { title, imageLink, description } = req.body;
 
             const obj = {
                 $set: {
                     title: title ? title : data.title,
-                    product_ref_id: product_ref_id ? product_ref_id : data.product_ref_id,
+                    imageLink: imageLink ? imageLink : data.imageLink,
+                    description: description ? description : data.description,
                 },
             };
             return res.send({
                 status: 201,
                 data: await header.update({ _id: id }, obj),
             });
+
 
         } catch (error) {
             return res.status(404).json({
@@ -89,4 +92,4 @@ class productFContr {
     }
 }
 
-export default new productFContr();
+export default new editorailContr();
