@@ -1,13 +1,13 @@
 import { Router } from "express";
-import head from "../controller/productF.contr.js";
+import head from "../controller/header.contr.js";
 
-const productRouter = Router();
+const headerRouter = Router();
 
-productRouter
+headerRouter
     .get("/", head.get)
     .get("/:id", head.get)
     .post("/", head.post)
     .put("/:id", head.put)
     .delete("/:id", head.delete);
 
-export default productRouter;
+export default headerRouter;
