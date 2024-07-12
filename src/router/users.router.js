@@ -6,7 +6,8 @@ const userRouter = Router();
 userRouter
     .get("/", head.get)
     .get("/:id", head.get)
-    .post("/", head.post)
+    .post("/login", head.login)
+    .post("/register", head.register)
     .put("/:id", head.put)
     .delete("/:id", head.delete);
 

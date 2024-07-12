@@ -22,7 +22,28 @@ class usersContr {
             });
         }
     }
-    async post(req, res) {
+    async login(req, res) {
+        try {
+            let { email, password } = req.body;
+            let data = await header.select(null, {
+                email,
+                password,
+            });
+
+            if (data.length > 0) {
+                const obj = data[0];
+                return res.send({
+                    data: obj,
+                    message: "success",
+                    status: 200
+                });
+            }
+            res.send({ status: 404, message: "Ro\'yxatdan o'tmagansiz" });
+        } catch (error) {
+            res.send({ status: 404, message: error.message });
+        }
+    }
+    async register(req, res) {
         try {
             let { username, email, password, birth_date } = req.body;
 
