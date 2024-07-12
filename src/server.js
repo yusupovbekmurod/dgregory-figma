@@ -10,6 +10,7 @@ import editorilRouter from "./router/editoril.router.js";
 import productrecoRouter from "./router/productreco.router.js";
 import catRouter from "./router/category.router.js";
 import userRouter from "./router/users.router.js";
+import bookMRouter from "./router/bookmark.router.js";
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -25,6 +26,7 @@ app.use("/editoril", editorilRouter);
 app.use("/product-reco", productrecoRouter);
 app.use("/category", catRouter);
 app.use("/users", userRouter);
+app.use("/bookmark", bookMRouter);
 
 app.listen(PORT);
 console.log("server listening " + PORT);
