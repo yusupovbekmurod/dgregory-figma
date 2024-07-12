@@ -11,6 +11,7 @@ import productrecoRouter from "./router/productreco.router.js";
 import catRouter from "./router/category.router.js";
 import userRouter from "./router/users.router.js";
 import bookMRouter from "./router/bookmark.router.js";
+import productsRouter from "./router/product.router.js"
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -27,6 +28,7 @@ app.use("/product-reco", productrecoRouter);
 app.use("/category", catRouter);
 app.use("/users", userRouter);
 app.use("/bookmark", bookMRouter);
+app.use("/products", productsRouter);
 
 app.listen(PORT);
 console.log("server listening " + PORT);
