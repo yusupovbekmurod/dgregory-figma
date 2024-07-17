@@ -1,5 +1,5 @@
 import { Router } from "express";
-import head from "../controller/bg.contr.js";
+import head from "../controller/users.contr.js";
 
 const bgRouter = Router();
 
