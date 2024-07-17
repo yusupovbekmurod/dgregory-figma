@@ -1,9 +1,9 @@
 import { Router } from "express";
-import head from "../controller/users.contr.js";
+import head from "../controller/bg.contr.js";
 
-const userRouter = Router();
+const bgRouter = Router();
 
-userRouter
+bgRouter
 
   .get("/", head.get)
   .get("/:id", head.get)
@@ -13,4 +13,4 @@ userRouter
   .put("/:id", head.put)
   .delete("/:id", head.delete);
 
-export default userRouter;
+export default bgRouter;
