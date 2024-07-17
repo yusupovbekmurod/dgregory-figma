@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import "./db/mongodb.js";
 
-import headerRouter from "./router/bg.router.js";
+import headerRouter from "./router/header.router.js";
 import productRouter from "./router/productF.router.js";
 import bgRouter from "./router/bg.router.js";
 import editRouter from "./router/editorial.router.js";
