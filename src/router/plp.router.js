@@ -1,14 +1,13 @@
 import { Router } from "express";
-import head from "../controller/bookmarl.contr.js";
+import head from "../controller/plp.contr.js";
 
-const bookMRouter = Router();
+const plpRouter = Router();
 
-bookMRouter
+plpRouter
     .get("/", head.get)
     .get("/:id", head.get)
     .post("/", head.post)
-    // .post("/buy",head.buy)
     .put("/:id", head.put)
     .delete("/:id", head.delete);
 
-export default bookMRouter;
+export default plpRouter;

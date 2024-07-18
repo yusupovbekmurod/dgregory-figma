@@ -1,6 +1,6 @@
-import header from "../model/bookmark.model.js";
-// import product from "../model/products.model.js";
-class bookMContr {
+import header from "../model/plp.modul.js";
+
+class plpContr {
   async get(req, res) {
     try {
       const id = req.params?.id;
@@ -12,7 +12,7 @@ class bookMContr {
       return res.send({
         status: 200,
         data,
-        message: "bookmark",
+        message: "PLP",
       });
     } catch (error) {
       return res.status(404).json({
@@ -24,13 +24,13 @@ class bookMContr {
   }
   async post(req, res) {
     try {
-      let { user_ref_id, product_ref_id, count } = req.body;
+      let { title, imageLink } = req.body;
+
       res.send({
         status: 201,
         data: await header.insert({
-          user_ref_id: user_ref_id,
-          product_ref_id: product_ref_id,
-          count: count,
+          title: title,
+          imageLink: imageLink,
         }),
         message: "success",
       });
@@ -42,38 +42,18 @@ class bookMContr {
       });
     }
   }
-  // async buy(req, res) {
-  //   try {
-  //     const id = req.params?.id;
-  //     let user = await header.select(id);
-  //     let pro = await product.select();
 
-  //     return res.send({
-  //       status: 200,
-  //       data:user,
-  //       message: "bookmark",
-  //     });
-
-  //   } catch (error) {
-  //     return res.status(404).json({
-  //       status: 404,
-  //       data: null,
-  //       message: error.message,
-  //     });
-  //   }
-  // }
   async put(req, res) {
     try {
       const id = req.params?.id;
       let data;
 
-      let { product_ref_id, user_ref_id, count } = req.body;
+      let { title, imageLink } = req.body;
 
       const obj = {
         $set: {
-          user_ref_id: user_ref_id ? user_ref_id : data.user_ref_id,
-          product_ref_id: product_ref_id ? product_ref_id : data.product_ref_id,
-          count: count ? count : data.count,
+          title: title ? title : data.title,
+          imageLink: imageLink ? imageLink : data.imageLink,
         },
       };
       return res.send({
@@ -107,4 +87,4 @@ class bookMContr {
   }
 }
 
-export default new bookMContr();
+export default new plpContr();
