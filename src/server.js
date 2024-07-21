@@ -13,6 +13,7 @@ import userRouter from "./router/users.router.js";
 import bookMRouter from "./router/bookmark.router.js";
 import productsRouter from "./router/product.router.js";
 import plpRouter from "./router/plp.router.js";
+import pdpRouter from "./router/pdp.router.js";
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -30,6 +31,7 @@ app.use("/users", userRouter);
 app.use("/bookmark", bookMRouter);
 app.use("/products", productsRouter);
 app.use("/plp", plpRouter);
+app.use("/pdp", pdpRouter);
 
 app.listen(PORT);
 console.log("server listening " + PORT);
