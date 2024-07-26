@@ -24,20 +24,6 @@ class usersContr {
       });
     }
   }
-  //   async adminLogin(req, res) {
-  //     try {
-  //       let { email, password } = req.body;
-  //       if (email == process.env.EMAIL && password == process.env.PASSWORD) {
-  //         res.send({
-  //           status: 200,
-  //           message: "admin",
-  //         });
-  //       }
-  //       res.send({ status: 404, message: "Ro'yxatdan o'tmagansiz" });
-  //     } catch (error) {
-  //       res.send({ status: 404, message: error.message });
-  //     }
-  //   }
   async login(req, res) {
     try {
       let admin = {

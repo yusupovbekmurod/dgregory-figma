@@ -42,26 +42,26 @@ class bookMContr {
       });
     }
   }
-  // async buy(req, res) {
-  //   try {
-  //     const id = req.params?.id;
-  //     let user = await header.select(id);
-  //     let pro = await product.select();
+  async buy(req, res) {
+    try {
+      const id = req.params?.id;
+      let user = await header.select(id);
+      let pro = await product.select();
 
-  //     return res.send({
-  //       status: 200,
-  //       data:user,
-  //       message: "bookmark",
-  //     });
+      return res.send({
+        status: 200,
+        data:pro.data,
+        message: "bookmark",
+      });
 
-  //   } catch (error) {
-  //     return res.status(404).json({
-  //       status: 404,
-  //       data: null,
-  //       message: error.message,
-  //     });
-  //   }
-  // }
+    } catch (error) {
+      return res.status(404).json({
+        status: 404,
+        data: null,
+        message: error.message,
+      });
+    }
+  }
   async put(req, res) {
     try {
       const id = req.params?.id;
