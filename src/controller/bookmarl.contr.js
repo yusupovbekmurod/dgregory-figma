@@ -51,7 +51,7 @@ class bookMContr {
       return res.send({
         status: 200,
         data:pro.data,
-        message: "bookmark",
+        message: "SOTILDI",
       });
 
     } catch (error) {
