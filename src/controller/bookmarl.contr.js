@@ -23,49 +23,57 @@ class bookMContr {
       });
     }
   }
+
   async buy(req, res) {
     try {
       const user_ref_id = req.params?.id;
-
       let user = await header.select(null, {
         user_ref_id,
       });
-      let zkzId = [];
-      let proCt = [];
-      let proId = [];
-      user.forEach((eid) => {
-        zkzId.push(eid.id);
-        proCt.push(eid.count);
-        proId.push(eid.product_ref_id.id);
-      });
 
-      // edit
+      if (user) {
+        let zkzId = [];
+        let proCt = [];
+        let proId = [];
+        user.forEach((eid) => {
+          zkzId.push(eid.id);
+          proCt.push(eid.count);
+          proId.push(eid.product_ref_id.id);
+        });
 
-      for (let i = 0; i < proId.length; i++) {
-        let pro = await product.select(proId[i]);
-        let ct = proCt[i];
+        // edit
 
-        const obj = {
-          $set: {
-            user_ref_id: pro.user_ref_id,
-            product_ref_id: pro.product_ref_id,
-            count: pro.count ? (pro.count -= ct) : pro.count,
-          },
-        };
+        for (let i = 0; i < proId.length; i++) {
+          let pro = await product.select(proId[i]);
+          let ct = proCt[i];
 
-        await product.update({ _id: proId[i] }, obj);
+          const obj = {
+            $set: {
+              user_ref_id: pro.user_ref_id,
+              product_ref_id: pro.product_ref_id,
+              count: pro.count ? (pro.count -= ct) : pro.count,
+            },
+          };
+
+          await product.update({ _id: proId[i] }, obj);
+        }
+        // edit end
+        // del
+
+        zkzId.forEach(async (zkId) => {
+          await header.delete(zkId);
+        });
+
+        return res.send({
+          status: 200,
+          data: "SOTILDI",
+          message: "success",
+        });
       }
-      // edit end
-      // del
-
-      zkzId.forEach(async (zkId) => {
-        await header.delete(zkId);
-      });
-
-      return res.send({
-        status: 200,
-        data: "SOTILDI",
-        message: "success",
+      res.status(404).json({
+        status: 404,
+        data: null,
+        message: error.message,
       });
     } catch (error) {
       return res.status(404).json({
